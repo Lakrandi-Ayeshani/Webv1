@@ -1,25 +1,55 @@
+import React, {Component} from "react";
+import Counter from "./Counter";
 import logo from './logo.svg';
 import './App.css';
+import Profile from "./Profile";
+import { render } from "@testing-library/react";
 
-function App() {
+const employeeDirectory = [
+  {name: "Chathura Prabashwara",
+  position: "CEO",
+  id: "1"},
+
+  {name: "Willson Uncle",
+  position: "Manager",
+  id: "2"}, 
+
+  {name: "Lakrandi Ayeshani",
+  position: "Happy Developer",
+  id: "3"}
+  
+]
+
+class App extends Component {
+  constructor(props){
+    super(props);
+      this.state ={
+        employees : employeeDirectory
+  } 
+}
+  render(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>This is our second header</h2>
+      <h1>This is the blank state we are working on...</h1>
+      <Counter></Counter> <br></br>
+      {
+        this.state.employees.map(employee =>{
+          //console.log(employee);
+          return(
+            <div style ={{backgroundColor: "yellow"}}>
+              <Profile
+              key={employee.id}
+              id={ employee.id}
+              name={employee.name}
+              position={employee.position}
+              />
+            </div>
+          )
+        })
+      }
     </div>
-  );
+  );}
 }
 
 export default App;
